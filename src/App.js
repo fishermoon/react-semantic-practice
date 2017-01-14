@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 import { Divider, List, Grid, Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
 import Notices from './Notices'
 import MyPage from './MyPage'

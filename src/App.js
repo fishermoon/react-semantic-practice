@@ -52,7 +52,7 @@ export default class App extends React.Component {
           <Sidebar.Pusher>
             <Segment>
               <TopMenu onClick={this.toggleSidebar}/>
-              {this.state.view}
+              {this.props.children}
               <Bottom/>
             </Segment>
           </Sidebar.Pusher>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Divider, List, Grid, Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
 import Notices from './Notices'
 import MyPage from './MyPage'
 import Home from './Home'
@@ -22,13 +22,13 @@ export default class App extends React.Component {
     view: newView,
     sidebarVisible: !this.state.sidebarVisible
   })
-
+  
   render() {
     const { sidebarVisible } = this.state
     return (
       <div>
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='uncover' width='thin' visible={sidebarVisible} icon='labeled' vertical inverted>
+          <Sidebar as={Menu} animation='uncover' width='thin' visible={sidebarVisible} vertical inverted>
             <Menu.Item name='x' onClick={this.toggleSidebar}>
               <Icon name='x' />
             </Menu.Item>
@@ -51,12 +51,9 @@ export default class App extends React.Component {
           </Sidebar>
           <Sidebar.Pusher>
             <Segment>
-              <Menu>
-              <Menu.Item name='content' onClick={this.toggleSidebar}>
-                <Icon name='content' />
-              </Menu.Item>
-              </Menu>
+              <TopMenu onClick={this.toggleSidebar}/>
               {this.state.view}
+              <GridExampleStretched/>
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
@@ -66,44 +63,59 @@ export default class App extends React.Component {
 }
 
 
-class MenuExampleStackable extends React.Component {
-  state = {}
+class TopMenu extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  toggleSidebar(e) {
+    this.props.onClick();
+  }
 
   render() {
-    const { activeItem } = this.state
-
     return (
-      <Menu stackable>
-        <Menu.Item>
-          <img src='http://semantic-ui.com/images/logo.png' />
-        </Menu.Item>
-
-        <Menu.Item
-          name='features'
-          active={activeItem === 'features'}
-          onClick={this.handleItemClick}
-        >
-          Features
-        </Menu.Item>
-
-        <Menu.Item
-          name='testimonials'
-          active={activeItem === 'testimonials'}
-          onClick={this.handleItemClick}
-        >
-          Testimonials
-        </Menu.Item>
-
-        <Menu.Item
-          name='sign-in'
-          active={activeItem === 'sign-in'}
-          onClick={this.handleItemClick}
-        >
-          Sign-in
+      <Menu>
+        <Menu.Item name='content' onClick={this.toggleSidebar.bind(this)}>
+        <Icon name='content' />
         </Menu.Item>
       </Menu>
-    )
+    );
   }
 }
+
+
+TopMenu.propTypes = {
+   onClick: React.PropTypes.func
+}
+
+
+const GridExampleStretched = () => (
+  <Segment inverted>
+    <Grid columns={3} divided >
+      <Grid.Row>
+        <Grid.Column>
+          <h4>Content</h4>
+          <Divider clearing />
+          <p> Articles</p>
+          <p> Courses</p>
+          <p> Projects</p>
+          <p> Tools</p>
+        </Grid.Column>
+        <Grid.Column>
+          <h4>Help & Resource</h4>
+          <Divider clearing />
+          <p> Help</p>
+          <p> How to Sign up</p>
+          <p> How to Make Money</p>
+        </Grid.Column>
+        <Grid.Column>
+          <h4>About our Company</h4>
+          <Divider clearing />
+          <p> Rules of Engagement</p>
+          <p> How to Sign up</p>
+          <p> How to Make Money</p>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  </Segment>
+)

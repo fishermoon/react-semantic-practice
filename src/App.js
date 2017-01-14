@@ -6,7 +6,8 @@ import MyPage from './MyPage'
 import Home from './Home'
 import Projects from './Projects'
 import Awards from './Awards'
-
+import Bottom from './Bottom'
+import TopMenu from './TopMenu'
 
 export default class App extends React.Component {
   state = {
@@ -53,7 +54,7 @@ export default class App extends React.Component {
             <Segment>
               <TopMenu onClick={this.toggleSidebar}/>
               {this.state.view}
-              <GridExampleStretched/>
+              <Bottom/>
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
@@ -61,61 +62,3 @@ export default class App extends React.Component {
     )
   }
 }
-
-
-class TopMenu extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  toggleSidebar(e) {
-    this.props.onClick();
-  }
-
-  render() {
-    return (
-      <Menu>
-        <Menu.Item name='content' onClick={this.toggleSidebar.bind(this)}>
-        <Icon name='content' />
-        </Menu.Item>
-      </Menu>
-    );
-  }
-}
-
-
-TopMenu.propTypes = {
-   onClick: React.PropTypes.func
-}
-
-
-const GridExampleStretched = () => (
-  <Segment inverted>
-    <Grid columns={3} divided >
-      <Grid.Row>
-        <Grid.Column>
-          <h4>Content</h4>
-          <Divider clearing />
-          <p> Articles</p>
-          <p> Courses</p>
-          <p> Projects</p>
-          <p> Tools</p>
-        </Grid.Column>
-        <Grid.Column>
-          <h4>Help & Resource</h4>
-          <Divider clearing />
-          <p> Help</p>
-          <p> How to Sign up</p>
-          <p> How to Make Money</p>
-        </Grid.Column>
-        <Grid.Column>
-          <h4>About our Company</h4>
-          <Divider clearing />
-          <p> Rules of Engagement</p>
-          <p> How to Sign up</p>
-          <p> How to Make Money</p>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-  </Segment>
-)

@@ -1,4 +1,5 @@
-import React, { Link, Component } from 'react'
+import React, { Component } from 'react'
+import { Link } from 'react-router'
 import { Form, Icon, Popup, Button, Header, Image, Modal } from 'semantic-ui-react'
 
 export default class ModalLogin extends Component {
@@ -10,10 +11,6 @@ export default class ModalLogin extends Component {
 
   close = () => {
     this.setState({ open: false })
-  }
-
-  clickSignup = () => {
-      <Link to='/signup'/>
   }
 
   render() {
@@ -40,7 +37,7 @@ export default class ModalLogin extends Component {
             <Button positive onClick={this.close}>
               로그인
             </Button>
-            <Button color='blue' onClick={this.clickSignup}>
+            <Button as={Link} to='/signup' color='blue' onClick={this.close}>
               회원가입
             </Button>
           </Modal.Actions>
